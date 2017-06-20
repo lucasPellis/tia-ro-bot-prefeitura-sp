@@ -1,0 +1,26 @@
+{
+  "name": "tia-ro-bot-prefeitura-sp",
+  "version": "1.0.0",
+  "description": "Tia Rô é um Bot da Prefeitura Municipal de São Paulo que traz informações sobre alimentação escolar para alunos, responsáveis e todos os cidadãos interessados.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvawillian/tia-ro-bot-prefeitura-sp.git"
+  },
+  "author": "Fernando Farias, Thiago Garbulha, Willian Silva",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/silvawillian/tia-ro-bot-prefeitura-sp/issues"
+  },
+  "homepage": "https://github.com/silvawillian/tia-ro-bot-prefeitura-sp#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "botly": "^1.4.1",
+    "express": "^4.15.3",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7"
+  }
+}
