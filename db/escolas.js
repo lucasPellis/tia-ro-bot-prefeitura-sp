@@ -1,0 +1,22 @@
+let escolas = [
+    {
+        "id": 1,
+        "escola": "EMEF General Vicente de Paulo Dale Coutinho",
+        "endereco": "Avenida Deputado Cantidio Sampaio, 6813 - Parada De Taipas, São Paulo - SP, 02860-001",
+        "categoria": "Mista"
+    },
+    {
+        "id": 2,
+        "escola": "EMEF Padre Leonel Franca",
+        "endereco": "Rua Xavier dos Pássaros, 39 - Jardim Rincão, São Paulo - SP, 02991-090",
+        "categoria": "Mista"
+    },
+    {
+        "id": 3,
+        "escola": "CEU Pêra Marmelo",
+        "endereco": "Rua Pêra-Marmelo, 226 - Jardim Santa Lucrecia, São Paulo - SP, 05185-420",
+        "categoria": "Mista"
+    }
+]
+
+module.exports = escolas;

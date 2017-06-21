@@ -22,6 +22,7 @@
     "botly": "^1.4.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "fuse.js": "^3.0.5",
     "node-env-file": "^0.1.8",
     "nodemon": "^1.11.0",
     "path": "^0.12.7"

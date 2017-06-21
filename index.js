@@ -5,6 +5,24 @@ const dotenv = require('dotenv').config({
     path: 'config.env'
 })
 
+// Carregar base de dados
+const escolas = require('./db/escolas')
+
+// Busca Fuzzy
+const Fuse = require('fuse.js')
+const fuse_options = {
+    shouldSort: true,
+    threshold: 0.6,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: [
+        "nome"
+    ]
+}
+const fuse = new Fuse(escolas, fuse_options)
+
 // Botly - Gerencia as chamadas ao Facebook
 const Botly = require('botly')
 const botly = new Botly({
@@ -23,7 +41,8 @@ const nodemon = require('nodemon')
 let users = {}
 
 botly.on("message", (sender, message, data) => {
-    let text = `echo: ${data.text}`;
+    // let text = `echo: ${data.text}`;
+    let text = fuse.search(data.text)
 
     if (users[sender]) {
         botly.sendText(echo_message(sender, text))
@@ -41,15 +60,29 @@ botly.on("postback", (sender, message, postback) => {
         case 'MENU_ALUNO':
             botly.sendText({
                 id: sender,
-                text: 'Você é um aluno!'
-            })
+                text: 'Aluno! Entendi! Bom, para poder te dar informações sobre o cardápio escolar, ' +
+                    'preciso que você me diga em que escola você está estudando. Digita aí o nome da escola, ' +
+                    'que eu vou procurar informações no meu banco de dados! :)'
+                 
+                }, (err, data) => {
+                    let text = fuse.search(data.text)
+                    botly.sendText({id: sender, text: 'Sua escola é a: ' + text + '!'})
+                }
+            )
             break;
 
         case 'MENU_RESPONSAVEL':
             botly.sendText({
                 id: sender,
-                text: 'Você é um responsável!'
-            })
+                text: 'Responsável! Entendi! Imaginamos que você esteja preocupado com a alimentação do aluno, ' +
+                    'e por aqui iremos te ajudar a entender mais sobre o que a escola tem servido. ' +
+                    'Faz o seguinte: me fala qual a escola que o aluno estuda, que eu vou procurar mais sobre a refeição servida! :)'
+                 
+                }, (err, data) => {
+                    let text = fuse.search(data.text)
+                    botly.sendText({id: sender, text: 'Sua escola é a: ' + text + '!'})
+                }
+            )
             break;
 
         case 'REALIZAR_AVALIACAO':
@@ -91,4 +124,4 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/webhook", botly.router());
-app.listen(3000);
+app.listen(9999);
