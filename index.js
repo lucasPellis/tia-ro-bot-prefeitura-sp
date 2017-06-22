@@ -43,12 +43,27 @@ let users = {}
 
 botly.on("message", (sender, message, data) => {
     // let text = `echo: ${data.text}`;
-    let text = fuse.search(data.text)
 
     if (users[sender]) {
-        botly.sendText(echo_message(sender, text[0].escola))
-        alimentos_dia(sender)
+        console.log("MESSAGE: " + users[sender].action)
+        
+        switch(users[sender].action) {
+            case 'AVALIAR_REFEICAO':
+                botly.sendText({id: sender, text: "Legal, vou repassar a mensagem pro pessoal daqui! :D"})
+                break;
 
+            case 'VERIFICAR_ALIMENTOS':
+                let text = fuse.search(data.text)
+                botly.sendText(echo_message(sender, text[0].escola))
+                alimentos_dia(sender)
+                break;
+
+            default:
+                botly.sendText(echo_message(sender, "Sabia que uma alimentação saudável é muito importante?"))
+                break;
+
+        
+        } 
     } else {
         botly.getUserProfile(sender, (err, info) => {
             users[sender] = info
@@ -65,30 +80,33 @@ botly.on("message", (sender, message, data) => {
 botly.on("postback", (sender, message, postback) => {
     switch (postback) {
         case 'MENU_ALUNO':
+            users[sender].action = "VERIFICAR_ALIMENTOS"
             botly.sendText({
                 id: sender,
                 text: 'Aluno! Entendi! Bom, para poder te dar informações sobre o cardápio escolar, ' +
                     'preciso que você me diga em que escola você está estudando. Digita aí o nome da escola, ' +
                     'que eu vou procurar informações no meu banco de dados! :)'
                  
-                }
-            )
+            })
             break;
 
         case 'MENU_RESPONSAVEL':
+            users[sender].action = "VERIFICAR_ALIMENTOS"
             botly.sendText({
                 id: sender,
                 text: 'Responsável! Entendi! Imaginamos que você esteja preocupado com a alimentação do aluno, ' +
                     'e por aqui iremos te ajudar a entender mais sobre o que a escola tem servido. ' +
                     'Faz o seguinte: me fala qual a escola que o aluno estuda, que eu vou procurar mais sobre a refeição servida! :)'
                  
-                }
-            )
+            })
             break;
 
-        case 'REALIZAR_AVALIACAO':
+        case 'AVALIAR_REFEICAO':
+            users[sender].action = "AVALIAR_REFEICAO"
             botly.sendText({
-
+                id: sender,
+                text: 'Você tem alguma mensagem pra deixar sobre a refeição que foi servida? Diz aí pra mim, que eu vou repassar a mensagem pra meus amigos da Prefeitura!'
+                 
             })
             break;
 
