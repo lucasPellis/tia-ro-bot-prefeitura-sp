@@ -1,4 +1,4 @@
-let escolas = [
+[
     {
         "id": 1,
         "escola": "EMEF General Vicente de Paulo Dale Coutinho",
@@ -16,7 +16,11 @@ let escolas = [
         "escola": "CEU Pêra Marmelo",
         "endereco": "Rua Pêra-Marmelo, 226 - Jardim Santa Lucrecia, São Paulo - SP, 05185-420",
         "categoria": "Mista"
+    },
+    {
+        "id": 4,
+        "escola": "CEU Lajeado",
+        "endereco": "R. Manuel da Mota Coutinho, 293 - Lajeado, São Paulo - SP, 08451-420",
+        "categoria": "Mista"
     }
 ]
-
-module.exports = escolas;
