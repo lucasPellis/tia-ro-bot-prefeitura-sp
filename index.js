@@ -132,10 +132,10 @@ botly.on("postback", (sender, message, postback) => {
             botly.sendText({
                 id: sender,
                 text: 'Informação nutricional de 🍚 Arroz (135g): ' +
-                    '\n\n🔴 Calorias - 176kcal' +
-                    '\n\n🔴 Gorduras - 0,4g' +
-                    '\n\n🔴 Carboidratos - 38g' +
-                    '\n\n🔴 Proteínas - 3,6g'
+                    '\n🔴 Calorias - 176kcal' +
+                    '\n🔴 Gorduras - 0,4g' +
+                    '\n🔴 Carboidratos - 38g' +
+                    '\n🔴 Proteínas - 3,6g'
 
             })
             break;
