@@ -109,6 +109,14 @@ botly.on("postback", (sender, message, postback) => {
             })
             break;
 
+        case 'GET_STARTED_CLICKED':
+            botly.sendText({
+                id: sender,
+                text: 'Vamos começar!'
+                 
+            })
+            break;
+
         default:
             break;
 
@@ -173,6 +181,30 @@ let alimentos_dia = (sender, text) => {
         console.log("send generic cb:", err, data);
     });
 }
+
+botly.setGetStarted({pageId: process.env.FB_PAGE_ID, payload: "GET_STARTED_CLICKED"}, (err, body) => {
+    if (err) {
+        console.log('Get Started: ERR: ' + err)
+    } else {
+        console.log('Get Started: BODY: ' + body)
+    }
+});
+
+botly.setGreetingText({
+    pageId: process.env.FB_PAGE_ID,
+    greeting: [{
+        "locale":"default",
+        "text":"Olá! :D"
+    }, {
+        "locale":"en_US",
+        "text":"Tenha informações sobre alimentação escolar diretamente pelo Facebook."
+   }]}, (err, body) => {
+        if (err) {
+            console.log('Get Started: ERR: ' + err)
+        } else {
+            console.log('Get Started: BODY: ' + body)
+        }
+});
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
