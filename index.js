@@ -45,10 +45,10 @@ botly.on("message", (sender, message, data) => {
 
     if (users[sender]) {
         console.log("MESSAGE: " + users[sender].action)
-        
-        switch(users[sender].action) {
+
+        switch (users[sender].action) {
             case 'AVALIAR_REFEICAO':
-                botly.sendText({id: sender, text: "Legal, vou repassar a mensagem pro pessoal daqui! :D"})
+                botly.sendText({ id: sender, text: "Legal, vou repassar a mensagem pro pessoal daqui! :D" })
                 break;
 
             case 'VERIFICAR_ALIMENTOS':
@@ -61,12 +61,12 @@ botly.on("message", (sender, message, data) => {
                 botly.sendText(echo_message(sender, "Sabia que uma alimentação saudável é muito importante?"))
                 break;
 
-        
-        } 
+
+        }
     } else {
         botly.getUserProfile(sender, (err, info) => {
             users[sender] = info
-            
+
             // Salvar info do usuário no nosso ~banco de dados~
             // let file = './db/users/' + sender + '.json'
             //jf.writeFileSync(file, info)
@@ -83,9 +83,9 @@ botly.on("postback", (sender, message, postback) => {
             botly.sendText({
                 id: sender,
                 text: 'Aluno! Entendi! Bom, para poder te dar informações sobre o cardápio escolar, ' +
-                    'preciso que você me diga em que escola você está estudando. Digita aí o nome da escola, ' +
-                    'que eu vou procurar informações no meu banco de dados! :)'
-                 
+                'preciso que você me diga em que escola você está estudando. Digita aí o nome da escola, ' +
+                'que eu vou procurar informações no meu banco de dados! :)'
+
             })
             break;
 
@@ -94,9 +94,9 @@ botly.on("postback", (sender, message, postback) => {
             botly.sendText({
                 id: sender,
                 text: 'Responsável! Entendi! Imaginamos que você esteja preocupado com a alimentação do aluno, ' +
-                    'e por aqui iremos te ajudar a entender mais sobre o que a escola tem servido. ' +
-                    'Faz o seguinte: me fala qual a escola que o aluno estuda, que eu vou procurar mais sobre a refeição servida! :)'
-                 
+                'e por aqui iremos te ajudar a entender mais sobre o que a escola tem servido. ' +
+                'Faz o seguinte: me fala qual a escola que o aluno estuda, que eu vou procurar mais sobre a refeição servida! :)'
+
             })
             break;
 
@@ -105,7 +105,7 @@ botly.on("postback", (sender, message, postback) => {
             botly.sendText({
                 id: sender,
                 text: 'Você tem alguma mensagem pra deixar sobre a refeição que foi servida? Diz aí pra mim, que eu vou repassar a mensagem pra meus amigos da Prefeitura!'
-                 
+
             })
             break;
 
@@ -113,7 +113,7 @@ botly.on("postback", (sender, message, postback) => {
             botly.sendText({
                 id: sender,
                 text: 'Vamos começar!'
-                 
+
             })
             break;
 
@@ -127,8 +127,8 @@ let welcome_message = (sender, name) => {
     return {
         id: sender,
         text: 'Olá, ' + name + '! Sou a Tia Rô, o bot da Secretaria Municipal de ' +
-            'Educação que traz informações sobre alimentação escolar para pais e alunos. ' +
-            'Antes de começarmos, me diga: você é um pai, ou um aluno?',
+        'Educação que traz informações sobre alimentação escolar para pais e alunos. ' +
+        'Antes de começarmos, me diga: você é um pai, ou um aluno?',
         quick_replies: [
             botly.createQuickReply('Sou responsável! 🐶', 'MENU_RESPONSAVEL'),
             botly.createQuickReply('Sou aluno! 😊', 'MENU_ALUNO')
@@ -146,64 +146,65 @@ let echo_message = (sender, text) => {
 
 let alimentos_dia = (sender, text) => {
     let element = [{
-            title: "Arroz",
-            image_url: "http://cdn2.colorir.com/desenhos/pintar/prato-de-arroz_2.png",
-            subtitle: "See all our colors",
-            buttons: [{
-                type: "postback",
-                title: "Info Nutricional", 
-                payload: "INFO_NUTRICIONAL"
-            }]
-        },
-        {
-            title: "Feijão",
-            image_url: "http://www.tudodesenhos.com/uploads/images/18210/prato-de-feijao.png",
-            subtitle: "See all our colors",
-            buttons: [{
-                type: "postback",
-                title: "Info Nutricional", 
-                payload: "INFO_NUTRICIONAL"
-            }]        
-        },
-        {
-            title: "Avaliar Refeição",
-            image_url: "http://knavishhedgehogs.com/wp-content/uploads/2015/07/five-stars1.png",
-            subtitle: "Deixe uma avaliação pra refeição!",
-            buttons: [{
-                type: "postback",
-                title: "Avaliar", 
-                payload: "AVALIAR_REFEICAO"
-            }]        
-        }
+        title: "Arroz",
+        image_url: "http://cdn2.colorir.com/desenhos/pintar/prato-de-arroz_2.png",
+        subtitle: "See all our colors",
+        buttons: [{
+            type: "postback",
+            title: "Info Nutricional",
+            payload: "INFO_NUTRICIONAL"
+        }]
+    },
+    {
+        title: "Feijão",
+        image_url: "http://www.tudodesenhos.com/uploads/images/18210/prato-de-feijao.png",
+        subtitle: "See all our colors",
+        buttons: [{
+            type: "postback",
+            title: "Info Nutricional",
+            payload: "INFO_NUTRICIONAL"
+        }]
+    },
+    {
+        title: "Avaliar Refeição",
+        image_url: "http://knavishhedgehogs.com/wp-content/uploads/2015/07/five-stars1.png",
+        subtitle: "Deixe uma avaliação pra refeição!",
+        buttons: [{
+            type: "postback",
+            title: "Avaliar",
+            payload: "AVALIAR_REFEICAO"
+        }]
+    }
     ]
-    
-    botly.sendGeneric({id: sender, elements: element, aspectRatio: Botly.CONST.IMAGE_ASPECT_RATIO.HORIZONTAL}, (err, data) => {
+
+    botly.sendGeneric({ id: sender, elements: element, aspectRatio: Botly.CONST.IMAGE_ASPECT_RATIO.HORIZONTAL }, (err, data) => {
         console.log("send generic cb:", err, data);
     });
 }
 
-botly.setGetStarted({pageId: process.env.FB_PAGE_ID, payload: "GET_STARTED_CLICKED"}, (err, body) => {
+botly.setGetStarted({ pageId: process.env.FB_PAGE_ID, payload: "GET_STARTED_CLICKED" }, (err, body) => {
     if (err) {
-        console.log('Get Started: ERR: ' + err)
+        console.log('Get Started: ERR: ' + JSON.stringify(err, null, 2))
     } else {
-        console.log('Get Started: BODY: ' + body)
+        console.log('Get Started: BODY: ' + JSON.stringify(body, null, 2))
     }
 });
 
 botly.setGreetingText({
     pageId: process.env.FB_PAGE_ID,
     greeting: [{
-        "locale":"default",
-        "text":"Olá! :D"
+        "locale": "default",
+        "text": "Olá! :D"
     }, {
-        "locale":"en_US",
-        "text":"Tenha informações sobre alimentação escolar diretamente pelo Facebook."
-   }]}, (err, body) => {
-        if (err) {
-            console.log('Get Started: ERR: ' + err)
-        } else {
-            console.log('Get Started: BODY: ' + body)
-        }
+        "locale": "en_US",
+        "text": "Tenha informações sobre alimentação escolar diretamente pelo Facebook."
+    }]
+}, (err, body) => {
+    if (err) {
+        console.log('Get Started: ERR: ' + JSON.stringify(err, null, 2))
+    } else {
+        console.log('Get Started: BODY: ' + JSON.stringify(body, null, 2))
+    }
 });
 
 app.use(bodyParser.json())
