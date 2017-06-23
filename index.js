@@ -48,13 +48,19 @@ botly.on("message", (sender, message, data) => {
 
         switch (users[sender].action) {
             case 'AVALIAR_REFEICAO':
+                users[sender].action = 'DEFAULT'
                 botly.sendText({ id: sender, text: "Legal, vou repassar a mensagem pro pessoal daqui! :D" })
                 break;
 
             case 'VERIFICAR_ALIMENTOS':
                 let text = fuse.search(data.text)
-                botly.sendText(echo_message(sender, text[0].escola))
-                alimentos_dia(sender)
+
+                if (!text[0].escola) {
+                    botly.sendText({id: sender, text: 'Eu não achei essa escola!! Vamos tentar de novo?'})
+                } else {
+                    botly.sendText(echo_message(sender, text[0].escola))
+                    alimentos_dia(sender)
+                }
                 break;
 
             default:
