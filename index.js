@@ -228,6 +228,9 @@ botly.setGreetingText({
     greeting: [{
         "locale": "default",
         "text": "Olá! Por aqui você pode ter informações sobre a alimentação escolar da Prefeitura de São Paulo! 😊"
+    },{
+        "locale": "BR",
+        "text": "Olá! Por aqui você pode ter informações sobre a alimentação escolar da Prefeitura de São Paulo! 😊"
     }]
 }, (err, body) => {
     if (err) {
