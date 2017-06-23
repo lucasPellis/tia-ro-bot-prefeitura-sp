@@ -145,6 +145,11 @@ let welcome_message = (sender, name) => {
     }
 }
 
+let typing = (user, timeout) => {
+    botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_ON })
+    setTimeout(botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_OFF }), timeout)
+}
+
 let echo_message = (sender, text) => {
     return {
         id: sender,
@@ -226,8 +231,3 @@ app.set('port', process.env.PORT || 3000)
 app.listen(app.get('port'), () => {
     console.log('Bot running on port', app.get('port'))
 });
-
-typing = (user, timeout) => {
-    botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_ON })
-    setTimeout(botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_OFF }), timeout)
-}
