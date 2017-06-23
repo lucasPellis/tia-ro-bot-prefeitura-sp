@@ -65,7 +65,7 @@ botly.on("message", (sender, message, data) => {
                 break;
 
             default:
-                botly.sendText(echo_message(sender, "Sabia que uma alimentação saudável é muito importante?"))
+                botly.sendText({id: sender, text: "Sabia que uma alimentação saudável é muito importante? :P"})
                 break;
 
 
@@ -166,8 +166,8 @@ let echo_message = (sender, text) => {
 let alimentos_dia = (sender, text) => {
     let element = [{
         title: "Arroz",
-        image_url: "http://cdn2.colorir.com/desenhos/pintar/prato-de-arroz_2.png",
-        subtitle: "See all our colors",
+        image_url: "https://perdendobarriga.com.br/wp-content/uploads/2016/04/arroz_branco.png",
+        subtitle: "Arroz branco, cozido",
         buttons: [{
             type: "postback",
             title: "Info Nutricional",
@@ -176,8 +176,18 @@ let alimentos_dia = (sender, text) => {
     },
     {
         title: "Feijão",
-        image_url: "http://www.tudodesenhos.com/uploads/images/18210/prato-de-feijao.png",
-        subtitle: "See all our colors",
+        image_url: "http://g.glbimg.com/og/gs/gsat5/f/thumbs/tag/2015/07/14/feijao-620_1.jpg",
+        subtitle: "Feijão, cozido",
+        buttons: [{
+            type: "postback",
+            title: "Info Nutricional",
+            payload: "INFO_NUTRICIONAL"
+        }]
+    },
+    {
+        title: "Frango",
+        image_url: "https://t1.rg.ltmcdn.com/pt/images/8/1/4/img_frango_cozido_simples_4418_600.jpg",
+        subtitle: "Frango, cozido",
         buttons: [{
             type: "postback",
             title: "Info Nutricional",
