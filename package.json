@@ -4,7 +4,7 @@
   "description": "Tia Rô é um Bot da Prefeitura Municipal de São Paulo que traz informações sobre alimentação escolar para alunos, responsáveis e todos os cidadãos interessados.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
