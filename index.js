@@ -65,7 +65,7 @@ botly.on("message", (sender, message, data) => {
                 break;
 
             default:
-                botly.sendText({id: sender, text: "Sabia que uma alimentação saudável é muito importante? :P"})
+                botly.sendText({id: sender, text: ";)"})
                 break;
 
 
@@ -131,7 +131,11 @@ botly.on("postback", (sender, message, postback) => {
         case 'INFO_NUTRICIONAL':
             botly.sendText({
                 id: sender,
-                text: 'Informação nutricional!'
+                text: 'Informação nutricional de 🍚 Arroz (135g): ' +
+                    '\n\n🔴 Calorias - 176kcal' +
+                    '\n\n🔴 Gorduras - 0,4g' +
+                    '\n\n🔴 Carboidratos - 38g' +
+                    '\n\n🔴 Proteínas - 3,6g'
 
             })
             break;
