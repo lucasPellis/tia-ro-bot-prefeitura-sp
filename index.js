@@ -226,7 +226,7 @@ botly.setGetStarted({ pageId: process.env.FB_PAGE_ID, payload: "GET_STARTED_CLIC
 botly.setGreetingText({
     pageId: process.env.FB_PAGE_ID,
     greeting: [{
-        "locale": "pt_BR",
+        "locale": "default",
         "text": "Olá! Por aqui você pode ter informações sobre a alimentação escolar da Prefeitura de São Paulo! 😊"
     }]
 }, (err, body) => {
