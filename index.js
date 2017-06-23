@@ -227,7 +227,7 @@ botly.setGreetingText({
     pageId: process.env.FB_PAGE_ID,
     greeting: [{
         "locale": "pt_BR",
-        "text": "Olá! :D"
+        "text": "Olá! Por aqui você pode ter informações sobre a alimentação escolar da Prefeitura de São Paulo! 😊"
     }, {
         "locale": "pt_BR",
         "text": "Tenha informações sobre alimentação escolar diretamente pelo Facebook."
