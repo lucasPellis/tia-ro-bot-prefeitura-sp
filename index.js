@@ -56,7 +56,8 @@ botly.on("message", (sender, message, data) => {
                 let text = fuse.search(data.text)
 
                 if (!text[0]) {
-                    botly.sendText({id: sender, text: 'Eu não achei essa escola!! Vamos tentar de novo?'})
+                    botly.sendText({id: sender, text: 'Eu não achei essa escola!! Vamos tentar de novo?' + '\n\nDigita aí o nome da escola, ' +
+                                                      'que eu vou procurar informações no meu banco de dados! :)'})
                 } else {
                     botly.sendText(echo_message(sender, text[0].escola))
                     alimentos_dia(sender)
@@ -124,6 +125,14 @@ botly.on("postback", (sender, message, postback) => {
                 //jf.writeFileSync(file, info)
 
                 botly.sendText(welcome_message(sender, users[sender].first_name))
+            })
+            break;
+
+        case 'INFO_NUTRICIONAL':
+            botly.sendText({
+                id: sender,
+                text: 'Informação nutricional!'
+
             })
             break;
 
