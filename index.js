@@ -79,7 +79,6 @@ botly.on("message", (sender, message, data) => {
 botly.on("postback", (sender, message, postback) => {
     switch (postback) {
         case 'MENU_ALUNO':
-            typing(sender, 3000)
             users[sender].action = "VERIFICAR_ALIMENTOS"
             botly.sendText({
                 id: sender,
