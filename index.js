@@ -228,15 +228,12 @@ botly.setGreetingText({
     greeting: [{
         "locale": "pt_BR",
         "text": "Olá! Por aqui você pode ter informações sobre a alimentação escolar da Prefeitura de São Paulo! 😊"
-    }, {
-        "locale": "pt_BR",
-        "text": "Tenha informações sobre alimentação escolar diretamente pelo Facebook."
     }]
 }, (err, body) => {
     if (err) {
-        console.log('Get Started: ERR: ' + JSON.stringify(err, null, 2))
+        console.log('Greeting Text Started: ERR: ' + JSON.stringify(err, null, 2))
     } else {
-        console.log('Get Started: BODY: ' + JSON.stringify(body, null, 2))
+        console.log('Greeting Text Started: BODY: ' + JSON.stringify(body, null, 2))
     }
 });
 
