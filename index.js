@@ -66,6 +66,7 @@ botly.on("message", (sender, message, data) => {
 
             default:
                 botly.sendText({id: sender, text: ";)"})
+                users = {}
                 break;
 
 
