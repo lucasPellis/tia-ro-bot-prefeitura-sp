@@ -55,7 +55,7 @@ botly.on("message", (sender, message, data) => {
             case 'VERIFICAR_ALIMENTOS':
                 let text = fuse.search(data.text)
 
-                if (!text[0].escola) {
+                if (!text[0]) {
                     botly.sendText({id: sender, text: 'Eu não achei essa escola!! Vamos tentar de novo?'})
                 } else {
                     botly.sendText(echo_message(sender, text[0].escola))
@@ -140,7 +140,7 @@ let welcome_message = (sender, name) => {
         'Educação que traz informações sobre alimentação escolar para pais e alunos. ' +
         'Antes de começarmos, me diga: você é um pai, ou um aluno?',
         quick_replies: [
-            botly.createQuickReply('Sou responsável! 🐶', 'MENU_RESPONSAVEL'),
+            botly.createQuickReply('Sou responsável! 👩', 'MENU_RESPONSAVEL'),
             botly.createQuickReply('Sou aluno! 😊', 'MENU_ALUNO')
 
         ]
