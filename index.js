@@ -84,7 +84,7 @@ botly.on("postback", (sender, message, postback) => {
             botly.sendText({
                 id: sender,
                 text: 'Aluno! Entendi! Bom, para poder te dar informações sobre o cardápio escolar, ' +
-                'preciso que você me diga em que escola você está estudando. Digita aí o nome da escola, ' +
+                'preciso que você me diga em que escola você está estudando. \n\nDigita aí o nome da escola, ' +
                 'que eu vou procurar informações no meu banco de dados! :)'
 
             })
@@ -96,7 +96,7 @@ botly.on("postback", (sender, message, postback) => {
                 id: sender,
                 text: 'Responsável! Entendi! Imaginamos que você esteja preocupado com a alimentação do aluno, ' +
                 'e por aqui iremos te ajudar a entender mais sobre o que a escola tem servido. ' +
-                'Faz o seguinte: me fala qual a escola que o aluno estuda, que eu vou procurar mais sobre a refeição servida! :)'
+                '\n\nFaz o seguinte: me fala qual a escola que o aluno estuda, que eu vou procurar mais sobre a refeição servida! :)'
 
             })
             break;
