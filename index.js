@@ -6,7 +6,6 @@ const dotenv = require('dotenv').config({
 })
 
 // Carregar base de dados
-const jf = require('jsonfile')
 const escolas = require('./db/escolas.json')
 
 // Busca Fuzzy
