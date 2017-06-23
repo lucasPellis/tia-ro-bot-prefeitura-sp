@@ -91,7 +91,6 @@ botly.on("postback", (sender, message, postback) => {
             break;
 
         case 'MENU_RESPONSAVEL':
-            typing(sender, 3000)
             users[sender].action = "VERIFICAR_ALIMENTOS"
             botly.sendText({
                 id: sender,
@@ -103,7 +102,6 @@ botly.on("postback", (sender, message, postback) => {
             break;
 
         case 'AVALIAR_REFEICAO':
-            typing(sender, 3000)
             users[sender].action = "AVALIAR_REFEICAO"
             botly.sendText({
                 id: sender,
@@ -113,7 +111,6 @@ botly.on("postback", (sender, message, postback) => {
             break;
 
         case 'GET_STARTED_CLICKED':
-            typing(sender, 3000)
             botly.getUserProfile(sender, (err, info) => {
                 users[sender] = info
 
@@ -143,11 +140,6 @@ let welcome_message = (sender, name) => {
 
         ]
     }
-}
-
-let typing = (user, timeout) => {
-    botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_ON }, (err, data) => {})
-    setTimeout(botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_OFF }, (err, data) => {} ), timeout)
 }
 
 let echo_message = (sender, text) => {
