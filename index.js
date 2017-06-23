@@ -146,8 +146,8 @@ let welcome_message = (sender, name) => {
 }
 
 let typing = (user, timeout) => {
-    botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_ON })
-    setTimeout(botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_OFF }), timeout)
+    botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_ON }, (err, data) => {})
+    setTimeout(botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_OFF }, (err, data) => {} ), timeout)
 }
 
 let echo_message = (sender, text) => {
