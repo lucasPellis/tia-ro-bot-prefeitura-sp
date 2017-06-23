@@ -175,10 +175,14 @@ let alimentos_dia = (sender, text) => {
     });
 }
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use("/webhook", botly.router());
-app.listen(3000);
+app.use("/webhook", botly.router())
+app.set('port', process.env.PORT || 3000)
+
+app.listen(app.get('port'), () => {
+    console.log('Bot running on port', app.get('port'))
+});
