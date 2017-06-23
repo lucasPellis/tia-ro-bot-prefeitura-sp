@@ -79,6 +79,7 @@ botly.on("message", (sender, message, data) => {
 botly.on("postback", (sender, message, postback) => {
     switch (postback) {
         case 'MENU_ALUNO':
+            typing(sender, 3000)
             users[sender].action = "VERIFICAR_ALIMENTOS"
             botly.sendText({
                 id: sender,
@@ -90,6 +91,7 @@ botly.on("postback", (sender, message, postback) => {
             break;
 
         case 'MENU_RESPONSAVEL':
+            typing(sender, 3000)
             users[sender].action = "VERIFICAR_ALIMENTOS"
             botly.sendText({
                 id: sender,
@@ -101,6 +103,7 @@ botly.on("postback", (sender, message, postback) => {
             break;
 
         case 'AVALIAR_REFEICAO':
+            typing(sender, 3000)
             users[sender].action = "AVALIAR_REFEICAO"
             botly.sendText({
                 id: sender,
@@ -110,10 +113,15 @@ botly.on("postback", (sender, message, postback) => {
             break;
 
         case 'GET_STARTED_CLICKED':
-            botly.sendText({
-                id: sender,
-                text: 'Vamos começar!'
+            typing(sender, 3000)
+            botly.getUserProfile(sender, (err, info) => {
+                users[sender] = info
 
+                // Salvar info do usuário no nosso ~banco de dados~
+                // let file = './db/users/' + sender + '.json'
+                //jf.writeFileSync(file, info)
+
+                botly.sendText(welcome_message(sender, users[sender].first_name))
             })
             break;
 
@@ -193,10 +201,10 @@ botly.setGetStarted({ pageId: process.env.FB_PAGE_ID, payload: "GET_STARTED_CLIC
 botly.setGreetingText({
     pageId: process.env.FB_PAGE_ID,
     greeting: [{
-        "locale": "default",
+        "locale": "pt_BR",
         "text": "Olá! :D"
     }, {
-        "locale": "en_US",
+        "locale": "pt_BR",
         "text": "Tenha informações sobre alimentação escolar diretamente pelo Facebook."
     }]
 }, (err, body) => {
@@ -218,3 +226,8 @@ app.set('port', process.env.PORT || 3000)
 app.listen(app.get('port'), () => {
     console.log('Bot running on port', app.get('port'))
 });
+
+typing = (user, timeout) => {
+    botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_ON })
+    setTimeout(botly.sendAction({ id: user, action: Botly.CONST.ACTION_TYPES.TYPING_OFF }), timeout)
+}
